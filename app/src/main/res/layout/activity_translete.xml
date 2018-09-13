@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.irmansyah.kamusku.ui.translete.TransleteViewModel" />
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@color/light_gray">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            style="@style/Toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:subtitleTextColor="@color/white"
+            app:title="@string/app_name"
+            app:titleTextAppearance="@style/Toolbar.TitleText"
+            app:titleTextColor="@color/white" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="@color/colorPrimary">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:text="@string/eng"
+                android:textColor="@color/white"
+                android:gravity="center"
+                android:background="@color/colorPrimary"
+                tools:text="@{viewModel.searchObs}"
+                />
+
+            <ImageView
+                app:srcCompat="@drawable/ic_compare_arrows_black_24dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:paddingTop="@dimen/spacing_small"
+                android:paddingBottom="@dimen/spacing_small"
+                android:paddingLeft="@dimen/spacing_medium"
+                android:paddingRight="@dimen/spacing_medium"
+                android:background="@drawable/ripple_effect"
+                android:onClick="@{() -> viewModel.switchLanguage()}"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:text="@string/ind"
+                android:textColor="@color/white"
+                android:gravity="center"
+                android:background="@color/colorPrimary"
+                tools:text="@{viewModel.resultObs}"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginLeft="@dimen/spacing_medium"
+            android:layout_marginRight="@dimen/spacing_medium"
+            android:layout_marginTop="@dimen/spacing_medium">
+
+            <EditText
+                android:id="@+id/input_word_edt"
+                android:hint="@string/edit_text"
+                android:layout_width="0dp"
+                android:layout_height="38dp"
+                android:layout_weight="1"
+                android:padding="@dimen/spacing_medium"
+                android:background="@drawable/rounded_edittext"/>
+
+            <Button
+                android:text="@string/search"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/colorPrimary"
+                android:textColor="@color/white"
+                android:onClick="@{() -> viewModel.onSearchClicked()}"/>
+
+        </LinearLayout>
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/spacing_medium"
+            android:layout_marginRight="@dimen/spacing_medium"
+            android:layout_marginTop="@dimen/spacing_medium"
+            android:layout_marginBottom="@dimen/spacing_medium">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/engIndRecyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="170dp"
+                    android:visibility="@{viewModel.showEngInd}"
+                    tools:listitem="@layout/item_eng_ind"
+                    tools:engIndAdapter="@{viewModel.englishIndonesiaObservableArrayList}"/>
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/indEngRecyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="170dp"
+                    android:visibility="@{viewModel.showIndEng}"
+                    tools:listitem="@layout/item_ind_eng"
+                    tools:indEngAdapter="@{viewModel.indonesiaEnglishObservableArrayList}"/>
+
+            </FrameLayout>
+
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/spacing_medium"
+            android:layout_marginRight="@dimen/spacing_medium"
+            android:layout_marginTop="@dimen/spacing_medium"
+            android:layout_marginBottom="@dimen/spacing_medium">
+
+            <TextView
+                android:id="@+id/result_edt"
+                android:text="@string/result"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/letter_large"
+                android:layout_marginLeft="@dimen/spacing_medium"
+                android:layout_marginRight="@dimen/spacing_medium"
+                android:layout_marginTop="@dimen/spacing_medium"
+                android:layout_marginBottom="@dimen/spacing_medium"
+                tools:text="@{viewModel.resultText}"/>
+
+        </android.support.v7.widget.CardView>
+
+    </LinearLayout>
+
+</layout>

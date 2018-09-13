@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Kamus ku</string>
+
+    <string name="ind">IND</string>
+    <string name="eng">ENG</string>
+
+    <string name="edit_text">Input here...</string>
+    <string name="search">Search</string>
+    <string name="result">Result</string>
+</resources>
